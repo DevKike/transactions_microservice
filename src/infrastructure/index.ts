@@ -1,9 +1,9 @@
 import express from 'express';
-import { CONSTANT } from './constants/constant';
 import { AppDataSource } from './database/typeorm-config';
+import { LOCAL_ENVIRONMENT } from './environments/local.environment';
 
 const app = express();
-const PORT = CONSTANT.SERVER_PORT;
+const PORT = LOCAL_ENVIRONMENT.SERVER_PORT;
 
 const initServer = () => {
   app.listen(PORT, async () => {

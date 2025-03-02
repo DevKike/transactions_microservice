@@ -1,12 +1,12 @@
 import { DataSource } from 'typeorm';
-import { CONSTANT } from '../constants/constant';
+import { LOCAL_ENVIRONMENT } from '../environments/local.environment';
 
 export const AppDataSource = new DataSource({
-  type: CONSTANT.DB_TYPE as any,
-  host: CONSTANT.DB_HOST,
-  port: CONSTANT.DB_PORT,
-  username: CONSTANT.DB_USERNAME,
-  password: CONSTANT.DB_PASSWORD,
+  type: LOCAL_ENVIRONMENT.DB_TYPE as any,
+  host: LOCAL_ENVIRONMENT.DB_HOST,
+  port: LOCAL_ENVIRONMENT.DB_PORT,
+  username: LOCAL_ENVIRONMENT.DB_USERNAME,
+  password: LOCAL_ENVIRONMENT.DB_PASSWORD,
   synchronize: true,
   logging: true,
   entities: [],

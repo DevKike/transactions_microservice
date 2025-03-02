@@ -1,4 +1,4 @@
-export const CONSTANT = {
+export const LOCAL_ENVIRONMENT = {
   SERVER_PORT: Number(process.env.SERVER_PORT),
 
   DB_TYPE: process.env.DB_TYPE,
