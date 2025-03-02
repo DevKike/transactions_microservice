@@ -1,6 +1,6 @@
 import express from 'express';
-import { AppDataSource } from './database/typeorm-config';
 import { LOCAL_ENVIRONMENT } from './environments/local.environment';
+import { AppDataSource } from './database/config/typeorm.config';
 
 const app = express();
 const PORT = LOCAL_ENVIRONMENT.SERVER_PORT;
