@@ -6,6 +6,6 @@ export class CustomError extends Error {
     super();
     this.name = 'CustomError';
     this.message = 'An error occurred';
-    this.statusCode = 500;
+    this.statusCode = HttpStatusCode.INTERNAL_SERVER_ERROR;
   }
 }
