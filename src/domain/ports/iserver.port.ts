@@ -1,4 +1,4 @@
-export interface IServerPort {
+export interface IServerPort<T> {
   start(): Promise<void>;
-  getHttpServer(): any;
+  getHttpServer(): T;
 }
