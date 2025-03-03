@@ -5,7 +5,7 @@ import { AppDataSource } from '../database/config/typeorm.config';
 import { IServerPort } from '../../domain/ports/iserver.port';
 
 @injectable()
-export class ExpressServerAdapter implements IServerPort {
+export class ExpressServerAdapter implements IServerPort<Application> {
   private readonly _app: Application;
   private readonly _port: number;
 
@@ -28,7 +28,7 @@ export class ExpressServerAdapter implements IServerPort {
     });
   }
 
-  getHttpServer(): Application {
+  getHttpServer(): express.Application {
     return this._app;
   }
 
