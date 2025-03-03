@@ -2,5 +2,10 @@ export const TYPES = {
   DataSource: Symbol.for('DataSource'),
 
   Application: Symbol.for('Application'),
-  Server: Symbol.for('Server'),
+  ExpressServerAdapter: Symbol.for('ExpressServerAdapter'),
+  RouterManagerAdapter: Symbol.for('RouterManagerAdapter'),
+
+  AccountService: Symbol.for('AccountService'),
+  CreateAccountUseCase: Symbol.for('CreateAccountUseCase'),
+  AccountRouterAdapter: Symbol.for('AccountRouterAdapter'),
 };
