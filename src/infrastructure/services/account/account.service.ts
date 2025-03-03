@@ -1,12 +1,12 @@
 import { DataSource, Repository } from 'typeorm';
-import { IAccountService } from '../../../domain/services/account/account.service.interface';
+import { IAccountService } from '../../../domain/services/account/account-service.interface';
 import { Account } from '../../database/entities/account.entity';
 import { inject } from 'inversify';
 import { TYPES } from '../../inversify/types/inversify.types';
 import {
   IAccountCreate,
   IAccount,
-} from '../../../domain/models/account/account.model.interface';
+} from '../../../domain/models/account/account-model.interface';
 
 export class AccountService implements IAccountService {
   private _accountRepository: Repository<Account>;

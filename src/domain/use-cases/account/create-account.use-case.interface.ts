@@ -1,7 +1,7 @@
 import {
-  IAccountCreate,
   IAccount,
-} from '../models/account/account.model.interface';
+  IAccountCreate,
+} from '../../models/account/account-model.interface';
 
 export interface ICreateAccountUseCase {
   execute(data: IAccountCreate): Promise<IAccount>;

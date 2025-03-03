@@ -2,7 +2,7 @@ import { injectable } from 'inversify';
 import express, { Application } from 'express';
 import { LOCAL_ENVIRONMENT } from '../environments/local.environment';
 import { AppDataSource } from '../database/config/typeorm.config';
-import { IServerPort } from '../../domain/ports/iserver.port';
+import { IServerPort } from '../../domain/ports/server-port.interface';
 
 @injectable()
 export class ExpressServerAdapter implements IServerPort<Application> {
