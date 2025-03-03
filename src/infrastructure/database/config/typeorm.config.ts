@@ -8,6 +8,7 @@ export const AppDataSource = new DataSource({
   port: LOCAL_ENVIRONMENT.DB_PORT,
   username: LOCAL_ENVIRONMENT.DB_USERNAME,
   password: LOCAL_ENVIRONMENT.DB_PASSWORD,
+  database: LOCAL_ENVIRONMENT.DB_NAME,
   synchronize: true,
   logging: true,
   entities: [Account],
