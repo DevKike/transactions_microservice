@@ -1,7 +1,9 @@
 import { Router } from 'express';
 import { IRouterModulePort } from '../../../../../domain/ports/http/router-module.port.interface';
 import { HttpStatusCode } from '../../../../../domain/enums/http/http-status-codes.enum';
+import { injectable } from 'inversify';
 
+@injectable()
 export class AccountRouterAdapter implements IRouterModulePort<Router> {
   private readonly _router: Router;
   constructor() {
