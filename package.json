@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start:dev": "ts-node-dev --env-file=.env  src/infrastructure/index.ts"
+    "start:dev": "ts-node-dev --env-file=.env  src/infrastructure/server.ts"
   },
   "repository": {
     "type": "git",
