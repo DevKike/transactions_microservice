@@ -1,8 +1,8 @@
 export enum AccountType {
-  CHECKING = 'CHECKING',
+  CHECKING = 'checking',
 }
 
 export enum AccountStatus {
-  ACTIVE = 'ACTIVE',
-  INACTIVE = 'INACTIVE',
+  ACTIVE = 'active',
+  INACTIVE = 'inactive',
 }

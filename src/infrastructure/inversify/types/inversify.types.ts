@@ -4,6 +4,7 @@ export const TYPES = {
   Application: Symbol.for('Application'),
   ExpressServerAdapter: Symbol.for('ExpressServerAdapter'),
   RouterManagerAdapter: Symbol.for('RouterManagerAdapter'),
+  ResponseManagerAdapter: Symbol.for('ResponseManagerAdapter'),
 
   AccountService: Symbol.for('AccountService'),
   CreateAccountUseCase: Symbol.for('CreateAccountUseCase'),

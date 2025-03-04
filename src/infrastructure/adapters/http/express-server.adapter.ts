@@ -4,7 +4,7 @@ import { LOCAL_ENVIRONMENT } from '../../environments/local.environment';
 import { AppDataSource } from '../../database/config/typeorm.config';
 import { IServerPort } from '../../../domain/ports/http/server-port.interface';
 import { TYPES } from '../../inversify/types/inversify.types';
-import { IRouterManagerPort } from '../../../domain/ports/http/router-manager.port.interface';
+import { IRouterManagerPort } from '../../../domain/ports/http/routers/router-manager.port.interface';
 
 @injectable()
 export class ExpressServerAdapter implements IServerPort<Application> {

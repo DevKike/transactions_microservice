@@ -1,7 +1,7 @@
 import { Application, Router } from 'express';
-import { IRouterManagerPort } from '../../../../domain/ports/http/router-manager.port.interface';
+import { IRouterManagerPort } from '../../../../domain/ports/http/routers/router-manager.port.interface';
 import { inject, injectable } from 'inversify';
-import { IRouterModulePort } from '../../../../domain/ports/http/router-module.port.interface';
+import { IRouterModulePort } from '../../../../domain/ports/http/routers/router-module.port.interface';
 import { TYPES } from '../../../inversify/types/inversify.types';
 
 @injectable()
