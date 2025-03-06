@@ -20,7 +20,7 @@ export class ClassValidatorMiddlewareFactory {
         const errors = await validate(dtoInstance);
 
         if (errors.length > 0) {
-          responseManager.manageException(errors[0], res);
+          responseManager.manageResponse(errors[0], res);
           return;
         }
 
