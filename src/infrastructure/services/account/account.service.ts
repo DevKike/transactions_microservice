@@ -19,7 +19,7 @@ export class AccountService implements IAccountService {
     this._accountRepository = _dataSource.getRepository(Account);
   }
 
-  async findById(id: IAccount['id']): Promise<IAccount | null> {
+  async findById(id: IAccount['id']): Promise<IAccount> {
     try {
       const account = await this._accountRepository.findOne({
         where: {
@@ -37,7 +37,7 @@ export class AccountService implements IAccountService {
     }
   }
 
-  async findByNumber(number: IAccount['number']): Promise<IAccount | null> {
+  async findByNumber(number: IAccount['number']): Promise<IAccount> {
     try {
       const account = await this._accountRepository.findOne({
         where: { number },

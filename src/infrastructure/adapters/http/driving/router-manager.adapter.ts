@@ -13,6 +13,6 @@ export class RouterManagerAdapter implements IRouterManagerPort<Application> {
   ) {}
 
   manageRoutes(application: Application): void {
-    application.use(this.API_PREFIX, this._accountRouter.getRouter());
+    application.use(`${this.API_PREFIX}/account`, this._accountRouter.getRouter());
   }
 }
