@@ -2,11 +2,12 @@ import {
   TransactionStatus,
   TransactionType,
 } from '../../enums/transaction/transaction.enum';
+import { IAccount } from '../account/account.model.interface';
 
 export interface ITransaction {
   id: number;
-  sourceAccountId: string;
-  destinationAccountId: string;
+  sourceAccount: IAccount;
+  destinationAccount: IAccount;
   amount: number;
   type: TransactionType;
   status: TransactionStatus;

@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm';
 import { LOCAL_ENVIRONMENT } from '../../environments/local.environment';
-import { Account } from '../entities/account.entity';
+import { Account } from '../entities/account/account.entity';
+import { Transaction } from '../entities/transaction/transaction.entity';
 
 export const AppDataSource = new DataSource({
   type: LOCAL_ENVIRONMENT.DB_TYPE as any,
@@ -11,5 +12,5 @@ export const AppDataSource = new DataSource({
   database: LOCAL_ENVIRONMENT.DB_NAME,
   synchronize: true,
   logging: false,
-  entities: [Account],
+  entities: [Account, Transaction],
 });

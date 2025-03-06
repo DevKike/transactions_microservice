@@ -1,4 +1,5 @@
 import { AccountStatus, AccountType } from '../../enums/account/account.enum';
+import { ITransaction } from '../transaction/transaction.model.interface';
 
 export interface IAccount {
   id: number;
