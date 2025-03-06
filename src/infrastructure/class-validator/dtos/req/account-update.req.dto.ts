@@ -3,7 +3,7 @@ import {
   AccountStatus,
   AccountType,
 } from '../../../../domain/enums/account/account.enum';
-import { IAccountUpdate } from '../../../../domain/models/account/account-model.interface';
+import { IAccountUpdate } from '../../../../domain/models/account/account.model.interface';
 
 export class AccountUpdateReqDto implements IAccountUpdate {
   @IsOptional()

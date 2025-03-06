@@ -1,7 +1,7 @@
 import {
   IAccountUpdate,
   IAccount,
-} from '../../../domain/models/account/account-model.interface';
+} from '../../../domain/models/account/account.model.interface';
 import { IAccountService } from '../../../domain/services/account/account-service.interface';
 import { IUpdateAccountUseCase } from '../../../domain/use-cases/account/update-account-data.use.case.interface';
 

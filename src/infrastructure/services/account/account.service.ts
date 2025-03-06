@@ -7,7 +7,7 @@ import {
   IAccountCreate,
   IAccount,
   IAccountUpdate,
-} from '../../../domain/models/account/account-model.interface';
+} from '../../../domain/models/account/account.model.interface';
 import { NotFoundException } from '../../../domain/exceptions/not-found.exception';
 import { AlreadyExistsException } from '../../../domain/exceptions/already-exists.exception';
 

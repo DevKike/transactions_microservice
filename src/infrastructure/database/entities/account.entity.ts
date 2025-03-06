@@ -5,7 +5,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { IAccount } from '../../../domain/models/account/account-model.interface';
+import { IAccount } from '../../../domain/models/account/account.model.interface';
 import {
   AccountStatus,
   AccountType,

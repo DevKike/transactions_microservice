@@ -3,7 +3,7 @@ import {
   AccountStatus,
   AccountType,
 } from '../../../../domain/enums/account/account.enum';
-import { IAccountCreate } from '../../../../domain/models/account/account-model.interface';
+import { IAccountCreate } from '../../../../domain/models/account/account.model.interface';
 
 export class AccountCreateReqDto implements IAccountCreate {
   @IsNotEmpty()
