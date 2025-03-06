@@ -3,7 +3,7 @@ import { AccountStatus, AccountType } from '../../enums/account/account.enum';
 export interface IAccount {
   id: number;
   number: string;
-  type: AccountType;
+  type?: AccountType;
   balance: number;
   status: AccountStatus;
   createdAt: Date;
@@ -13,3 +13,8 @@ export interface IAccount {
 
 export interface IAccountCreate
   extends Omit<IAccount, 'id' | 'createdAt' | 'updatedAt'> {}
+
+export interface IAccountUpdate
+  extends Partial<
+    Omit<IAccount, 'id' | 'number' | 'createdAt' | 'updatedAt'>
+  > {}

@@ -9,5 +9,6 @@ export const TYPES = {
   AccountService: Symbol.for('AccountService'),
   CreateAccountUseCase: Symbol.for('CreateAccountUseCase'),
   GetAccountDataUseCase: Symbol.for('GetAccountDataUseCase'),
+  UpdateAccountUseCase: Symbol.for('UpdateAccountUseCase'),
   AccountRouterAdapter: Symbol.for('AccountRouterAdapter'),
 };

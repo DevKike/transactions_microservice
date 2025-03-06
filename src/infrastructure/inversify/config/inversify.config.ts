@@ -18,6 +18,8 @@ import { ResponseManagerAdapter } from '../../adapters/http/response/response-ma
 import { CustomError } from '../../../domain/exceptions/custom-error.exception';
 import { IGetAccountDataUseCase } from '../../../domain/use-cases/account/get-account-data.use-case.interface';
 import { GetAccountDataUseCase } from '../../../application/use-cases/account/get-account-data.use-case';
+import { IUpdateAccountUseCase } from '../../../domain/use-cases/account/update-account-data.use.case.interface';
+import { UpdateAccountUseCase } from '../../../application/use-cases/account/update-account.use.case';
 
 const container = new Container();
 
@@ -49,7 +51,12 @@ container
     const accountService = context.get<IAccountService>(TYPES.AccountService);
     return new GetAccountDataUseCase(accountService);
   });
-
+container
+  .bind<IUpdateAccountUseCase>(TYPES.UpdateAccountUseCase)
+  .toDynamicValue((context) => {
+    const accountService = context.get<IAccountService>(TYPES.AccountService);
+    return new UpdateAccountUseCase(accountService);
+  });
 container
   .bind<IRouterModulePort<Router>>(TYPES.AccountRouterAdapter)
   .to(AccountRouterAdapter);

@@ -6,6 +6,7 @@ import { TYPES } from '../../inversify/types/inversify.types';
 import {
   IAccountCreate,
   IAccount,
+  IAccountUpdate,
 } from '../../../domain/models/account/account-model.interface';
 import { NotFoundException } from '../../../domain/exceptions/not-found.exception';
 import { AlreadyExistsException } from '../../../domain/exceptions/already-exists.exception';
@@ -65,6 +66,17 @@ export class AccountService implements IAccountService {
         );
 
       return await this._accountRepository.save(data);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async update(id: IAccount['id'], data: IAccountUpdate): Promise<IAccount> {
+    try {
+      await this.findById(id);
+
+      await this._accountRepository.update(id, data);
+      return await this.findById(id);
     } catch (error) {
       throw error;
     }

@@ -6,6 +6,10 @@ export class GetAccountDataUseCase implements IGetAccountDataUseCase {
   constructor(private readonly _accountService: IAccountService) {}
 
   async execute(id: IAccount['id']): Promise<IAccount> {
-    return await this._accountService.findById(id);
+    try {
+      return await this._accountService.findById(id);
+    } catch (error) {
+      throw error;
+    }
   }
 }

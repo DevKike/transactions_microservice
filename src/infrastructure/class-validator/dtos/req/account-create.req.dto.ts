@@ -12,7 +12,7 @@ export class AccountCreateReqDto implements IAccountCreate {
 
   @IsNotEmpty()
   @IsEnum(AccountType)
-  type: AccountType;
+  type?: AccountType;
 
   @IsNotEmpty()
   @IsNumber()

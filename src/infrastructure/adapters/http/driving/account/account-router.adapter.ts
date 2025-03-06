@@ -11,6 +11,8 @@ import { AccountCreateReqDto } from '../../../../class-validator/dtos/req/accoun
 import { ClassValidatorMiddlewareFactory } from '../../middlewares/class-validator.middleware';
 import { container } from '../../../../inversify/config/inversify.config';
 import { IGetAccountDataUseCase } from '../../../../../domain/use-cases/account/get-account-data.use-case.interface';
+import { IUpdateAccountUseCase } from '../../../../../domain/use-cases/account/update-account-data.use.case.interface';
+import { AccountUpdateReqDto } from '../../../../class-validator/dtos/req/account-update.req.dto';
 
 @injectable()
 export class AccountRouterAdapter implements IRouterModulePort<Router> {
@@ -28,7 +30,9 @@ export class AccountRouterAdapter implements IRouterModulePort<Router> {
     @inject(TYPES.CreateAccountUseCase)
     private readonly _createAccountUseCase: ICreateAccountUseCase,
     @inject(TYPES.GetAccountDataUseCase)
-    private readonly _getAccountDataUseCase: IGetAccountDataUseCase
+    private readonly _getAccountDataUseCase: IGetAccountDataUseCase,
+    @inject(TYPES.UpdateAccountUseCase)
+    private readonly _updateAccountDataUse: IUpdateAccountUseCase
   ) {
     this._router = Router();
     this._classValidator = ClassValidatorMiddlewareFactory.create(container);
@@ -38,7 +42,7 @@ export class AccountRouterAdapter implements IRouterModulePort<Router> {
   initRoutes(): void {
     this._router.get('/:id', (req: Request, res: Response) => {
       this._responseManagerAdapter.manageResponse(
-        this._getAccountDataUseCase.execute(Number(req.params.id)),
+        this._getAccountDataUseCase.execute(parseInt(req.params.id)),
         res,
         HttpStatusCode.OK,
         SUCCESS_MESSAGES.FETCHED
@@ -54,6 +58,17 @@ export class AccountRouterAdapter implements IRouterModulePort<Router> {
           res,
           HttpStatusCode.CREATED,
           SUCCESS_MESSAGES.CREATED
+        );
+      }
+    );
+
+    this._router.patch(
+      '/:id',
+      this._classValidator(AccountUpdateReqDto),
+      (req: Request, res: Response) => {
+        this._responseManagerAdapter.manageResponse(
+          this._updateAccountDataUse.execute(parseInt(req.params.id), req.body),
+          res
         );
       }
     );
