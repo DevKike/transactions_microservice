@@ -12,7 +12,7 @@ import { NotFoundException } from '../../../domain/exceptions/not-found.exceptio
 import { AlreadyExistsException } from '../../../domain/exceptions/already-exists.exception';
 
 export class AccountService implements IAccountService {
-  private _accountRepository: Repository<Account>;
+  private readonly _accountRepository: Repository<Account>;
 
   constructor(
     @inject(TYPES.DataSource) private readonly _dataSource: DataSource
