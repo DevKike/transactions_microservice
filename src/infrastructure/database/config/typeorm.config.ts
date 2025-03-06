@@ -10,6 +10,6 @@ export const AppDataSource = new DataSource({
   password: LOCAL_ENVIRONMENT.DB_PASSWORD,
   database: LOCAL_ENVIRONMENT.DB_NAME,
   synchronize: true,
-  logging: true,
+  logging: false,
   entities: [Account],
 });
