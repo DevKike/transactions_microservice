@@ -2,7 +2,7 @@ import { AccountStatus, AccountType } from '../../enums/account/account.enum';
 
 export interface IAccount {
   id: number;
-  number: number;
+  number: string;
   type: AccountType;
   balance: number;
   status: AccountStatus;

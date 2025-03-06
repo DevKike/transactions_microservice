@@ -2,8 +2,12 @@ import { Response } from 'express';
 import { IResponseManagerPort } from '../../../../domain/ports/http/response/response-manager.port.interface';
 import { HttpStatusCode } from '../../../../domain/enums/http/http-status-codes.enum';
 import { CustomError } from '../../../../domain/exceptions/custom-error.exception';
+import { AlreadyExistsException } from '../../../../domain/exceptions/already-exists.exception';
+import { NotFoundException } from '../../../../domain/exceptions/not-found.exception';
 
-export class ResponseManagerAdapter implements IResponseManagerPort<Response, CustomError> {
+export class ResponseManagerAdapter
+  implements IResponseManagerPort<Response, CustomError>
+{
   constructor() {}
 
   async manageSuccess(
@@ -17,9 +21,7 @@ export class ResponseManagerAdapter implements IResponseManagerPort<Response, Cu
 
       return appResponse.status(statusCode).json({ message, data: result });
     } catch (error) {
-      return appResponse
-        .status(HttpStatusCode.INTERNAL_SERVER_ERROR)
-        .json(error);
+      return await this.manageException(error as CustomError, appResponse);
     }
   }
 
@@ -27,6 +29,20 @@ export class ResponseManagerAdapter implements IResponseManagerPort<Response, Cu
     error: CustomError,
     appResponse: Response<any, Record<string, any>>
   ): Promise<Response<any, Record<string, any>>> {
-    return appResponse.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json(error);
+    if (error instanceof NotFoundException) {
+      return appResponse
+        .status(error.statusCode)
+        .json({ message: error.message });
+    }
+
+    if (error instanceof AlreadyExistsException) {
+      return appResponse
+        .status(error.statusCode)
+        .json({ message: error.message });
+    }
+
+    return appResponse
+      .status(HttpStatusCode.INTERNAL_SERVER_ERROR)
+      .json({ message: error });
   }
 }

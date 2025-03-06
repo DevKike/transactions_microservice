@@ -8,7 +8,7 @@ import { IAccountCreate } from '../../../../domain/models/account/account-model.
 export class AccountCreateReqDto implements IAccountCreate {
   @IsNotEmpty()
   @IsNumber()
-  number: number;
+  number: string;
 
   @IsNotEmpty()
   @IsEnum(AccountType)

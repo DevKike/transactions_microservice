@@ -5,5 +5,6 @@ import {
 
 export interface IAccountService {
   findById(id: IAccount['id']): Promise<IAccount | null>;
-  create(data: IAccountCreate): Promise<IAccount>;
+  findByNumber(number: IAccount['number']): Promise<IAccount | null>;
+  save(data: IAccountCreate): Promise<IAccount>;
 }

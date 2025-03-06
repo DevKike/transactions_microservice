@@ -7,7 +7,7 @@ import { IResponseManagerPort } from '../../../../../domain/ports/http/response/
 import { HttpStatusCode } from '../../../../../domain/enums/http/http-status-codes.enum';
 import { SUCCESS_MESSAGES } from '../../../../../domain/constants/success-messages.constant';
 import { CustomError } from '../../../../../domain/exceptions/custom-error.exception';
-import { AccountCreateReqDto } from '../../../../class-validator/dtos/req/account-create.req,dto';
+import { AccountCreateReqDto } from '../../../../class-validator/dtos/req/account-create.req.dto';
 import { ClassValidatorMiddlewareFactory } from '../../middlewares/class-validator.middleware';
 import { container } from '../../../../inversify/config/inversify.config';
 

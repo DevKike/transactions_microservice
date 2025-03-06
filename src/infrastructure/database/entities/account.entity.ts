@@ -16,8 +16,8 @@ export class Account implements IAccount {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  number: number;
+  @Column({ type: 'varchar', unique: true })
+  number: string;
 
   @Column({ type: 'enum', enum: AccountType, default: AccountType.CHECKING })
   type: AccountType;

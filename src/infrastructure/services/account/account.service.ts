@@ -7,6 +7,8 @@ import {
   IAccountCreate,
   IAccount,
 } from '../../../domain/models/account/account-model.interface';
+import { NotFoundException } from '../../../domain/exceptions/not-found.exception';
+import { AlreadyExistsException } from '../../../domain/exceptions/already-exists.exception';
 
 export class AccountService implements IAccountService {
   private _accountRepository: Repository<Account>;
@@ -26,7 +28,7 @@ export class AccountService implements IAccountService {
       });
 
       if (!account || account === null) {
-        throw new Error('Account not found');
+        throw new NotFoundException(`Account with id: ${id} not found`);
       }
 
       return account;
@@ -35,8 +37,33 @@ export class AccountService implements IAccountService {
     }
   }
 
-  async create(data: IAccountCreate): Promise<IAccount> {
+  async findByNumber(number: IAccount['number']): Promise<IAccount | null> {
     try {
+      const account = await this._accountRepository.findOne({
+        where: { number },
+      });
+
+      if (!account || account === null) {
+        throw new NotFoundException(
+          `Account with number number: ${number} not found`
+        );
+      }
+
+      return account;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async save(data: IAccountCreate): Promise<IAccount> {
+    try {
+      const isExisting = await this.findByNumber(data.number);
+
+      if (isExisting)
+        throw new AlreadyExistsException(
+          `Account with number: ${data.number} already exists`
+        );
+
       return await this._accountRepository.save(data);
     } catch (error) {
       throw error;

@@ -1,7 +1,7 @@
 import { HttpStatusCode } from '../enums/http/http-status-codes.enum';
 
-export class CustomError extends Error {
-  private statusCode: HttpStatusCode;
+export abstract class CustomError extends Error {
+  public statusCode: HttpStatusCode;
   constructor() {
     super();
     this.name = 'CustomError';
