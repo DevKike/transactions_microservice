@@ -5,7 +5,7 @@ import { AppDataSource } from '../../database/config/typeorm.config';
 import { IServerPort } from '../../../domain/ports/http/server-port.interface';
 import { Application, Response, Router } from 'express';
 import { ExpressServerAdapter } from '../../adapters/http/express-server.adapter';
-import { IAccountService } from '../../../domain/services/account/account-service.interface';
+import { IAccountService } from '../../../domain/services/account/account.service.interface';
 import { AccountService } from '../../services/account/account.service';
 import { ICreateAccountUseCase } from '../../../domain/use-cases/account/create-account.use-case.interface';
 import { CreateAccountUseCase } from '../../../application/use-cases/account/create-account.use-case';

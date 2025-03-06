@@ -1,5 +1,5 @@
 import { DataSource, Repository } from 'typeorm';
-import { IAccountService } from '../../../domain/services/account/account-service.interface';
+import { IAccountService } from '../../../domain/services/account/account.service.interface';
 import { inject } from 'inversify';
 import { Account } from '../../database/entities/account/account.entity';
 import { TYPES } from '../../inversify/types/inversify.types';
