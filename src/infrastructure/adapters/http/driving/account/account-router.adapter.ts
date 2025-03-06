@@ -7,12 +7,12 @@ import { IResponseManagerPort } from '../../../../../domain/ports/http/response/
 import { HttpStatusCode } from '../../../../../domain/enums/http/http-status-codes.enum';
 import { SUCCESS_MESSAGES } from '../../../../../domain/constants/success-messages.constant';
 import { CustomError } from '../../../../../domain/exceptions/custom-error.exception';
-import { AccountCreateReqDto } from '../../../../class-validator/dtos/req/account-create.req.dto';
+import { AccountCreateReqDto } from '../../../../class-validator/dtos/account/req/account-create.req.dto';
 import { ClassValidatorMiddlewareFactory } from '../../middlewares/class-validator.middleware';
 import { container } from '../../../../inversify/config/inversify.config';
 import { IGetAccountDataUseCase } from '../../../../../domain/use-cases/account/get-account-data.use-case.interface';
 import { IUpdateAccountUseCase } from '../../../../../domain/use-cases/account/update-account-data.use.case.interface';
-import { AccountUpdateReqDto } from '../../../../class-validator/dtos/req/account-update.req.dto';
+import { AccountUpdateReqDto } from '../../../../class-validator/dtos/account/req/account-update.req.dto';
 
 @injectable()
 export class AccountRouterAdapter implements IRouterModulePort<Router> {
