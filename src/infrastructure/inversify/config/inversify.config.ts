@@ -20,6 +20,8 @@ import { IGetAccountDataUseCase } from '../../../domain/use-cases/account/get-ac
 import { GetAccountDataUseCase } from '../../../application/use-cases/account/get-account-data.use-case';
 import { IUpdateAccountUseCase } from '../../../domain/use-cases/account/update-account-data.use.case.interface';
 import { UpdateAccountUseCase } from '../../../application/use-cases/account/update-account.use.case';
+import { ITransactionService } from '../../../domain/services/transaction/transaction.service.interface';
+import { TransactionService } from '../../services/transaction/transaction.service';
 
 const container = new Container();
 
@@ -60,5 +62,9 @@ container
 container
   .bind<IRouterModulePort<Router>>(TYPES.AccountRouterAdapter)
   .to(AccountRouterAdapter);
+
+container
+  .bind<ITransactionService>(TYPES.TransactionService)
+  .to(TransactionService);
 
 export { container };

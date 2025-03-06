@@ -16,3 +16,6 @@ export interface ITransaction {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface ITransactionCreate
+  extends Omit<ITransaction, 'id' | 'createdAt' | 'updatedAt'> {}
