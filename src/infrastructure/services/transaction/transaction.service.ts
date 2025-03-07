@@ -4,8 +4,8 @@ import { DataSource, Repository } from 'typeorm';
 import { Transaction } from '../../database/entities/transaction/transaction.entity';
 import { TYPES } from '../../inversify/types/inversify.types';
 import {
+  ICreateTransaction,
   ITransaction,
-  ITransactionCreate,
 } from '../../../domain/models/transaction/transaction.model.interface';
 import { NotFoundException } from '../../../domain/exceptions/not-found.exception';
 
@@ -59,7 +59,7 @@ export class TransactionService implements ITransactionService {
     }
   }
 
-  async save(data: ITransactionCreate): Promise<ITransaction> {
+  async save(data: ICreateTransaction): Promise<ITransaction> {
     try {
       return await this._transactionRepository.save(data);
     } catch (error) {

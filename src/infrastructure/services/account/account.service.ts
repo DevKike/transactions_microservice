@@ -38,19 +38,11 @@ export class AccountService implements IAccountService {
     }
   }
 
-  async findByNumber(number: IAccount['number']): Promise<IAccount> {
+  async findByNumber(number: IAccount['number']): Promise<IAccount | null> {
     try {
-      const account = await this._accountRepository.findOne({
+      return await this._accountRepository.findOne({
         where: { number },
       });
-
-      if (!account || account === null) {
-        throw new NotFoundException(
-          `Account with number number: ${number} not found`
-        );
-      }
-
-      return account;
     } catch (error) {
       throw error;
     }

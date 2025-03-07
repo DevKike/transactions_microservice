@@ -2,14 +2,17 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { IAccount } from '../../../domain/models/account/account.model.interface';
+import { IAccount } from '../../../../domain/models/account/account.model.interface';
 import {
   AccountStatus,
   AccountType,
-} from '../../../domain/enums/account/account.enum';
+} from '../../../../domain/enums/account/account.enum';
+import { Transaction } from '../transaction/transaction.entity';
+import { ITransaction } from '../../../../domain/models/transaction/transaction.model.interface';
 
 @Entity('account')
 export class Account implements IAccount {
@@ -37,4 +40,10 @@ export class Account implements IAccount {
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
+
+  @OneToMany(() => Transaction, (transaction) => transaction.sourceAccount)
+  sourceTransactions: Transaction[];
+
+  @OneToMany(() => Transaction, (transaction) => transaction.destinationAccount)
+  destinationTransactions: Transaction[];
 }

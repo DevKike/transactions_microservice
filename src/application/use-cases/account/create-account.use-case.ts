@@ -10,9 +10,7 @@ export class CreateAccountUseCase implements ICreateAccountUseCase {
 
   async execute(data: IAccountCreate): Promise<IAccount> {
     try {
-      const account = await this._accountService.save(data);
-
-      return account;
+      return await this._accountService.save(data);
     } catch (error) {
       throw error;
     }

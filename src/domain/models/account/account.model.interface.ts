@@ -9,11 +9,20 @@ export interface IAccount {
   status: AccountStatus;
   createdAt: Date;
   updatedAt: Date;
-  //   owner 1to1
+  sourceTransactions: ITransaction[];
+  destinationTransactions: ITransaction[];
+  // owner 1to1
 }
 
 export interface IAccountCreate
-  extends Omit<IAccount, 'id' | 'createdAt' | 'updatedAt'> {}
+  extends Omit<
+    IAccount,
+    | 'id'
+    | 'createdAt'
+    | 'updatedAt'
+    | 'sourceTransactions'
+    | 'destinationTransactions'
+  > {}
 
 export interface IAccountUpdate
   extends Partial<
