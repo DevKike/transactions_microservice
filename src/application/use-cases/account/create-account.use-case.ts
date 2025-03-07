@@ -10,9 +10,27 @@ export class CreateAccountUseCase implements ICreateAccountUseCase {
 
   async execute(data: IAccountCreate): Promise<IAccount> {
     try {
-      return await this._accountService.save(data);
+      const cvc = this.generateCVC();
+      const dueDate = this.generateDueDate();
+
+      const newData = {
+        ...data,
+        cvc,
+        dueDate,
+      };
+
+      return await this._accountService.save(newData);
     } catch (error) {
       throw error;
     }
+  }
+
+  private generateCVC(): number {
+    return Math.floor(100 + Math.random() * 900);
+  }
+
+  private generateDueDate(): Date {
+    const today = new Date();
+    return new Date(today.setFullYear(today.getFullYear() + 3));
   }
 }

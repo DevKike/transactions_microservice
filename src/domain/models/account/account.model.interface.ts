@@ -4,6 +4,8 @@ import { ITransaction } from '../transaction/transaction.model.interface';
 export interface IAccount {
   id: number;
   number: string;
+  cvc: number;
+  dueDate: Date;
   type?: AccountType;
   balance: number;
   status: AccountStatus;
@@ -22,9 +24,14 @@ export interface IAccountCreate
     | 'updatedAt'
     | 'sourceTransactions'
     | 'destinationTransactions'
+    | 'cvc'
+    | 'dueDate'
   > {}
 
 export interface IAccountUpdate
   extends Partial<
-    Omit<IAccount, 'id' | 'number' | 'createdAt' | 'updatedAt'>
+    Omit<
+      IAccount,
+      'id' | 'number' | 'createdAt' | 'updatedAt' | 'cvc' | 'dueDate'
+    >
   > {}

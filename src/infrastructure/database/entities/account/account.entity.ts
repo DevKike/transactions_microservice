@@ -12,7 +12,6 @@ import {
   AccountType,
 } from '../../../../domain/enums/account/account.enum';
 import { Transaction } from '../transaction/transaction.entity';
-import { ITransaction } from '../../../../domain/models/transaction/transaction.model.interface';
 
 @Entity('account')
 export class Account implements IAccount {
@@ -21,6 +20,12 @@ export class Account implements IAccount {
 
   @Column({ type: 'varchar', unique: true })
   number: string;
+
+  @Column({ type: 'int', width: 3, unique: true })
+  cvc: number;
+
+  @Column({ name: 'due_date', nullable: true })
+  dueDate: Date;
 
   @Column({ type: 'enum', enum: AccountType, default: AccountType.CHECKING })
   type: AccountType;
