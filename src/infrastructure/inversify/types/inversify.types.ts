@@ -14,5 +14,4 @@ export const TYPES = {
 
   TransactionService: Symbol.for('TransactionService'),
   DepositMoneyUseCase: Symbol.for('DepositMoneyUseCase'),
-  TransactionRouterAdapter: Symbol.for('TransactionRouterAdapter'),
 };
