@@ -1,12 +1,13 @@
 import {
   ITransaction,
   ITransactionCreate,
+  ITransactionUpdate,
 } from '../../models/transaction/transaction.model.interface';
 
 export interface ITransactionService {
   findById(id: ITransaction['id']): Promise<ITransaction>;
   findByAccount(
-    account: ITransaction['destinationAccount']
+    account: ITransaction['destinationAccountId']
   ): Promise<ITransaction[]>;
   save(data: ITransactionCreate): Promise<ITransaction>;
 }

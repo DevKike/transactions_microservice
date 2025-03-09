@@ -1,3 +1,4 @@
+import { AccountStatus } from '../../../domain/enums/account/account.enum';
 import {
   IAccountCreate,
   IAccount,
@@ -10,11 +11,14 @@ export class CreateAccountUseCase implements ICreateAccountUseCase {
 
   async execute(data: IAccountCreate): Promise<IAccount> {
     try {
+      const accountNumber = this.generateAccountNumber();
       const cvc = this.generateCVC();
       const dueDate = this.generateDueDate();
 
       const newData = {
         ...data,
+        number: accountNumber,
+        status: AccountStatus.ACTIVE,
         cvc,
         dueDate,
       };
@@ -23,6 +27,10 @@ export class CreateAccountUseCase implements ICreateAccountUseCase {
     } catch (error) {
       throw error;
     }
+  }
+
+  private generateAccountNumber(): number {
+    return Math.floor(1000000000000000 + Math.random() * 9000000000000000);
   }
 
   private generateCVC(): number {

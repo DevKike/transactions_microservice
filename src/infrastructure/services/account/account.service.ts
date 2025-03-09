@@ -73,4 +73,29 @@ export class AccountService implements IAccountService {
       throw error;
     }
   }
+
+  async updateBalance(
+    accountNumber: IAccount['number'],
+    balance: IAccount['balance']
+  ): Promise<string> {
+    try {
+      const account = await this.findByNumber(accountNumber);
+
+      if (!account)
+        throw new NotFoundException(
+          `Account with number: ${accountNumber} not found`
+        );
+
+      const newBalance = (balance += account.balance);
+
+      await this._accountRepository.update(
+        { number: accountNumber },
+        { balance: newBalance }
+      );
+
+      return 'Balance updated successfully';
+    } catch (error) {
+      throw error;
+    }
+  }
 }

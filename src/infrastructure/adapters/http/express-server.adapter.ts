@@ -7,7 +7,7 @@ import { TYPES } from '../../inversify/types/inversify.types';
 import { IRouterManagerPort } from '../../../domain/ports/http/routers/router-manager.port.interface';
 
 @injectable()
-export class ExpressServerAdapter implements IServerPort<Application> {
+export class  ExpressServerAdapter implements IServerPort<Application> {
   private readonly _app: Application;
   private readonly _port: number;
 

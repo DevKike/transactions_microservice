@@ -18,8 +18,8 @@ export class Account implements IAccount {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: 'varchar', unique: true })
-  number: string;
+  @Column({ type: 'bigint', unique: true })
+  number: number;
 
   @Column({ type: 'int', width: 3, unique: true })
   cvc: number;
@@ -46,9 +46,12 @@ export class Account implements IAccount {
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  @OneToMany(() => Transaction, (transaction) => transaction.sourceAccount)
+  @OneToMany(() => Transaction, (transaction) => transaction.sourceAccountId)
   sourceTransactions: Transaction[];
 
-  @OneToMany(() => Transaction, (transaction) => transaction.destinationAccount)
+  @OneToMany(
+    () => Transaction,
+    (transaction) => transaction.destinationAccountId
+  )
   destinationTransactions: Transaction[];
 }

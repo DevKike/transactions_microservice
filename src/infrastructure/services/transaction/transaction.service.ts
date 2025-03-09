@@ -4,8 +4,8 @@ import { DataSource, Repository } from 'typeorm';
 import { Transaction } from '../../database/entities/transaction/transaction.entity';
 import { TYPES } from '../../inversify/types/inversify.types';
 import {
-  ICreateTransaction,
   ITransaction,
+  ITransactionCreate
 } from '../../../domain/models/transaction/transaction.model.interface';
 import { NotFoundException } from '../../../domain/exceptions/not-found.exception';
 
@@ -38,12 +38,12 @@ export class TransactionService implements ITransactionService {
   }
 
   async findByAccount(
-    account: ITransaction['destinationAccount']
+    account: ITransaction['destinationAccountId']
   ): Promise<ITransaction[]> {
     try {
       const transactions = await this._transactionRepository.find({
         where: {
-          destinationAccount: account,
+          destinationAccountId: account,
         },
       });
 
@@ -59,11 +59,12 @@ export class TransactionService implements ITransactionService {
     }
   }
 
-  async save(data: ICreateTransaction): Promise<ITransaction> {
+  async save(data: ITransactionCreate): Promise<ITransaction> {
     try {
       return await this._transactionRepository.save(data);
     } catch (error) {
       throw error;
     }
   }
+
 }

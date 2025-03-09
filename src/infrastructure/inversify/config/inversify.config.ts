@@ -22,6 +22,9 @@ import { IUpdateAccountUseCase } from '../../../domain/use-cases/account/update-
 import { UpdateAccountUseCase } from '../../../application/use-cases/account/update-account.use.case';
 import { ITransactionService } from '../../../domain/services/transaction/transaction.service.interface';
 import { TransactionService } from '../../services/transaction/transaction.service';
+import { IDepositMoneyUseCase } from '../../../domain/use-cases/transaction/deposit-money.use-case.interface';
+import { DepositMoneyUseCase } from '../../../application/use-cases/transactions/deposit-money.use-case';
+import { TransactionRouterAdapter } from '../../adapters/http/driving/transaction/transaction-router.adapter';
 
 const container = new Container();
 
@@ -66,5 +69,17 @@ container
 container
   .bind<ITransactionService>(TYPES.TransactionService)
   .to(TransactionService);
+container
+  .bind<IDepositMoneyUseCase>(TYPES.DepositMoneyUseCase)
+  .toDynamicValue((context) => {
+    const transactionService = context.get<ITransactionService>(
+      TYPES.TransactionService
+    );
+    const accountService = context.get<IAccountService>(TYPES.AccountService);
+    return new DepositMoneyUseCase(transactionService, accountService);
+  });
+container
+  .bind<IRouterModulePort<Router>>(TYPES.TransactionRouterAdapter)
+  .to(TransactionRouterAdapter);
 
 export { container };

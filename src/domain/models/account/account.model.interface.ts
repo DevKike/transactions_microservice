@@ -3,7 +3,7 @@ import { ITransaction } from '../transaction/transaction.model.interface';
 
 export interface IAccount {
   id: number;
-  number: string;
+  number: number;
   cvc: number;
   dueDate: Date;
   type?: AccountType;
@@ -24,9 +24,9 @@ export interface IAccountCreate
     | 'updatedAt'
     | 'sourceTransactions'
     | 'destinationTransactions'
-    | 'cvc'
-    | 'dueDate'
   > {}
+
+export interface IAccountCreateDto extends Pick<IAccount, 'type'> {}
 
 export interface IAccountUpdate
   extends Partial<

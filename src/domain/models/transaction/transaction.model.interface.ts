@@ -1,5 +1,4 @@
 import {
-  DepositMethod,
   TransactionStatus,
   TransactionType,
 } from '../../enums/transaction/transaction.enum';
@@ -11,19 +10,19 @@ export interface ITransaction {
   type: TransactionType;
   status: TransactionStatus;
   reference: string;
-  description: string;
+  sourceAccountId: IAccount;
+  destinationAccountId: IAccount;
+  description?: string;
   createdAt: Date;
   updatedAt: Date;
-  sourceAccount?: IAccount;
-  destinationAccount: IAccount;
 }
 
-export interface ICreateTransaction
-  extends Omit<ITransaction, 'id' | 'createdAt' | 'updatedAT'> {}
+export interface ITransactionCreate
+  extends Pick<ITransaction, 'amount' | 'description'> {}
 
-export interface IDeposit {
-  destinationAccount: IAccount['number'];
-  amount: number;
-  description?: string;
-  depositMethod: DepositMethod;
+export interface ITransactionUpdate extends Pick<ITransaction, 'status'> {}
+
+export interface IDeposit extends Pick<ITransaction, 'amount'> {
+  destinationAccountNumber: IAccount['number'];
 }
+

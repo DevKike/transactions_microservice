@@ -11,7 +11,6 @@ import {
   TransactionStatus,
   TransactionType,
 } from '../../../../domain/enums/transaction/transaction.enum';
-import { IAccount } from '../../../../domain/models/account/account.model.interface';
 import { ITransaction } from '../../../../domain/models/transaction/transaction.model.interface';
 import { Account } from '../account/account.entity';
 
@@ -19,16 +18,6 @@ import { Account } from '../account/account.entity';
 export class Transaction implements ITransaction {
   @PrimaryGeneratedColumn()
   id: number;
-
-  @ManyToOne(() => Account, (account) => account.sourceTransactions, {
-    nullable: true,
-  })
-  @JoinColumn({ name: 'source_account_id' })
-  sourceAccount?: Account;
-
-  @ManyToOne(() => Account, (account) => account.destinationTransactions)
-  @JoinColumn({ name: 'destination_account_id' })
-  destinationAccount: Account;
 
   @Column()
   amount: number;
@@ -46,8 +35,16 @@ export class Transaction implements ITransaction {
   @Column()
   reference: string;
 
-  @Column({ type: 'varchar', length: 100 })
-  description: string;
+  @ManyToOne(() => Account, (account) => account.sourceTransactions)
+  @JoinColumn({ name: 'source_account_id' })
+  sourceAccountId: Account;
+
+  @ManyToOne(() => Account, (account) => account.destinationTransactions)
+  @JoinColumn({ name: 'destination_account_id' })
+  destinationAccountId: Account;
+
+  @Column({ type: 'varchar', length: 100, nullable: true })
+  description?: string;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;

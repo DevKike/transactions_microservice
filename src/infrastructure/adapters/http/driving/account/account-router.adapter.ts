@@ -57,7 +57,7 @@ export class AccountRouterAdapter implements IRouterModulePort<Router> {
           this._createAccountUseCase.execute(req.body),
           res,
           HttpStatusCode.CREATED,
-          SUCCESS_MESSAGES.CREATED
+          SUCCESS_MESSAGES.CREATED 
         );
       }
     );

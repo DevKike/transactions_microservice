@@ -9,10 +9,19 @@ export class RouterManagerAdapter implements IRouterManagerPort<Application> {
   private readonly API_PREFIX = '/api';
   constructor(
     @inject(TYPES.AccountRouterAdapter)
-    private readonly _accountRouter: IRouterModulePort<Router>
+    private readonly _accountRouter: IRouterModulePort<Router>,
+    @inject(TYPES.TransactionRouterAdapter)
+    private readonly _transactionRouter: IRouterModulePort<Router>
   ) {}
 
   manageRoutes(application: Application): void {
-    application.use(`${this.API_PREFIX}/account`, this._accountRouter.getRouter());
+    application.use(
+      `${this.API_PREFIX}/account`,
+      this._accountRouter.getRouter()
+    );
+    application.use(
+      `${this.API_PREFIX}/transaction`,
+      this._transactionRouter.getRouter()
+    );
   }
 }
