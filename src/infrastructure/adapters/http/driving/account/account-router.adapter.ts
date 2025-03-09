@@ -66,17 +66,6 @@ export class AccountRouterAdapter implements IRouterModulePort<Router> {
       }
     );
 
-    this._router.patch(
-      '/:id',
-      this._classValidator(AccountUpdateReqDto),
-      (req: Request, res: Response) => {
-        this._responseManagerAdapter.manageResponse(
-          this._updateAccountDataUse.execute(parseInt(req.params.id), req.body),
-          res
-        );
-      }
-    );
-
     this._router.post(
       '/deposit',
       this._classValidator(DepositMoneyReqDto),
