@@ -1,7 +1,7 @@
 import { AccountStatus } from '../../../domain/enums/account/account.enum';
 import {
-  IAccountCreate,
   IAccount,
+  IAccountCreate,
 } from '../../../domain/models/account/account.model.interface';
 import { IAccountService } from '../../../domain/services/account/account.service.interface';
 import { ICreateAccountUseCase } from '../../../domain/use-cases/account/create-account.use-case.interface';
@@ -33,8 +33,8 @@ export class CreateAccountUseCase implements ICreateAccountUseCase {
     return Math.floor(1000000000000000 + Math.random() * 9000000000000000);
   }
 
-  private generateCVC(): number {
-    return Math.floor(100 + Math.random() * 900);
+  private generateCVC(): string {
+    return Math.floor(100 + Math.random() * 900).toString();
   }
 
   private generateDueDate(): Date {

@@ -7,8 +7,8 @@ export class HttpService implements IHttpService {
   async post<T>(url: string, payload: T): Promise<void> {
     try {
       await axios.post(url, payload);
-    } catch (error) {
-      throw error;
+    } catch (_) {
+      console.error('Error trying to log request');
     }
   }
 }

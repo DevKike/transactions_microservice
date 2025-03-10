@@ -31,7 +31,7 @@ export class ResponseManagerAdapter
     try {
       const result = await promise;
 
-      await this._httpService.post<ILogRequest>(
+      this._httpService.post<ILogRequest>(
         LOCAL_ENVIRONMENT.LOG_MICROSERVICE_URL!,
         {
           service: 'ACCOUNT_MICROSERVICE',
@@ -57,7 +57,7 @@ export class ResponseManagerAdapter
     appResponse: Response<any, Record<string, any>>
   ): Promise<Response<any, Record<string, any>>> {
     if (error instanceof NotFoundException) {
-      await this._httpService.post<ILogRequest>(
+      this._httpService.post<ILogRequest>(
         LOCAL_ENVIRONMENT.LOG_MICROSERVICE_URL!,
         {
           service: 'ACCOUNT_MICROSERVICE',
@@ -73,7 +73,7 @@ export class ResponseManagerAdapter
     }
 
     if (error instanceof AlreadyExistsException) {
-      await this._httpService.post<ILogRequest>(
+      this._httpService.post<ILogRequest>(
         LOCAL_ENVIRONMENT.LOG_MICROSERVICE_URL!,
         {
           service: 'ACCOUNT_MICROSERVICE',
@@ -89,7 +89,7 @@ export class ResponseManagerAdapter
     }
 
     if (error instanceof BadRequestException) {
-      await this._httpService.post<ILogRequest>(
+      this._httpService.post<ILogRequest>(
         LOCAL_ENVIRONMENT.LOG_MICROSERVICE_URL!,
         {
           service: 'ACCOUNT_MICROSERVICE',

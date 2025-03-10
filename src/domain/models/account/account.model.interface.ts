@@ -4,7 +4,7 @@ import { ITransaction } from '../transaction/transaction.model.interface';
 export interface IAccount {
   id: number;
   number: number;
-  cvc: number;
+  cvc: string;
   dueDate: Date;
   type?: AccountType;
   balance: number;

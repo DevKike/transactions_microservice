@@ -15,7 +15,7 @@ import { DepositMoneyReqDto } from '../../../../class-validator/dtos/account/req
 import { IDepositMoneyUseCase } from '../../../../../domain/use-cases/account/deposit-money.use-case.interface';
 import { SendMoneyReqDto } from '../../../../class-validator/dtos/account/req/send-money.req.dto';
 import { ISendMoneyUseCase } from '../../../../../domain/use-cases/account/send-money.use-case.interface';
-import { SendMoneyResDto } from '../../../../class-validator/dtos/account/res/send-money.res.dto';
+import { ITransactionResponse } from '../../../../../domain/models/transaction/transaction.model.interface';
 
 @injectable()
 export class AccountRouterAdapter implements IRouterModulePort<Router> {
@@ -37,7 +37,7 @@ export class AccountRouterAdapter implements IRouterModulePort<Router> {
     @inject(TYPES.DepositMoneyUseCase)
     private readonly _depositMoneyUseCase: IDepositMoneyUseCase,
     @inject(TYPES.SendMoneyUseCase)
-    private readonly _sendMoneyUseCase: ISendMoneyUseCase<SendMoneyResDto>
+    private readonly _sendMoneyUseCase: ISendMoneyUseCase<ITransactionResponse>
   ) {
     this._router = Router();
     this._classValidator = ClassValidatorMiddlewareFactory.create(container);

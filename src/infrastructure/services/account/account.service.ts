@@ -10,6 +10,7 @@ import {
 } from '../../../domain/models/account/account.model.interface';
 import { NotFoundException } from '../../../domain/exceptions/not-found.exception';
 import { AlreadyExistsException } from '../../../domain/exceptions/already-exists.exception';
+import { encrypt } from '../../utils/encrypter.util';
 
 export class AccountService implements IAccountService {
   private readonly _accountRepository: Repository<Account>;
@@ -22,17 +23,19 @@ export class AccountService implements IAccountService {
 
   async findById(id: IAccount['id']): Promise<IAccount> {
     try {
-      const account = await this._accountRepository.findOne({
+      const createdAccount = await this._accountRepository.findOne({
         where: {
           id,
         },
       });
 
-      if (!account || account === null) {
+      if (!createdAccount || createdAccount === null) {
         throw new NotFoundException(`Account with id: ${id} not found`);
       }
 
-      return account;
+      const { cvc, ...account } = createdAccount;
+
+      return account as any;
     } catch (error) {
       throw error;
     }
@@ -40,9 +43,15 @@ export class AccountService implements IAccountService {
 
   async findByNumber(number: IAccount['number']): Promise<IAccount | null> {
     try {
-      return await this._accountRepository.findOne({
+      const createdAccount = await this._accountRepository.findOne({
         where: { number },
       });
+
+      if (!createdAccount) return null;
+
+      const { cvc, ...account } = createdAccount;
+
+      return account as any;
     } catch (error) {
       throw error;
     }
@@ -57,7 +66,17 @@ export class AccountService implements IAccountService {
           `Account with number: ${data.number} already exists`
         );
 
-      return await this._accountRepository.save(data);
+      const encryptCvc = encrypt(data.cvc);
+
+      const dataWithEncryptedCvc = { ...data, cvc: encryptCvc };
+
+      const createdAccount = await this._accountRepository.save(
+        dataWithEncryptedCvc
+      );
+
+      const { cvc, ...account } = createdAccount;
+
+      return account as any;
     } catch (error) {
       throw error;
     }
@@ -68,6 +87,7 @@ export class AccountService implements IAccountService {
       await this.findById(id);
 
       await this._accountRepository.update(id, data);
+
       return await this.findById(id);
     } catch (error) {
       throw error;

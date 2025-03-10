@@ -24,9 +24,9 @@ import { IDepositMoneyUseCase } from '../../../domain/use-cases/account/deposit-
 import { DepositMoneyUseCase } from '../../../application/use-cases/account/deposit-money.use-case';
 import { ISendMoneyUseCase } from '../../../domain/use-cases/account/send-money.use-case.interface';
 import { SendMoneyUseCase } from '../../../application/use-cases/account/send-money.use-case';
-import { SendMoneyResDto } from '../../class-validator/dtos/account/res/send-money.res.dto';
 import { IHttpService } from '../../services/logger/interfaces/http.service.interface';
 import { HttpService } from '../../services/logger/http.service';
+import { ITransactionResponse } from '../../../domain/models/transaction/transaction.model.interface';
 
 const container = new Container();
 
@@ -75,7 +75,7 @@ container
     return new DepositMoneyUseCase(transactionService, accountService);
   });
 container
-  .bind<ISendMoneyUseCase<SendMoneyResDto>>(TYPES.SendMoneyUseCase)
+  .bind<ISendMoneyUseCase<ITransactionResponse>>(TYPES.SendMoneyUseCase)
   .toDynamicValue((context) => {
     const accountService = context.get<IAccountService>(TYPES.AccountService);
     const transactionService = context.get<ITransactionService>(

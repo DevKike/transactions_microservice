@@ -4,23 +4,18 @@ import {
 } from '../../../domain/enums/transaction/transaction.enum';
 import { BadRequestException } from '../../../domain/exceptions/bad-request.exception';
 import { NotFoundException } from '../../../domain/exceptions/not-found.exception';
-import {
-  ITransaction,
-  ITransfer,
-} from '../../../domain/models/transaction/transaction.model.interface';
+import { ITransactionResponse, ITransfer } from '../../../domain/models/transaction/transaction.model.interface';
 import { IAccountService } from '../../../domain/services/account/account.service.interface';
 import { ITransactionService } from '../../../domain/services/transaction/transaction.service.interface';
 import { ISendMoneyUseCase } from '../../../domain/use-cases/account/send-money.use-case.interface';
-import { SendMoneyReqDto } from '../../../infrastructure/class-validator/dtos/account/req/send-money.req.dto';
-import { SendMoneyResDto } from '../../../infrastructure/class-validator/dtos/account/res/send-money.res.dto';
 
-export class SendMoneyUseCase implements ISendMoneyUseCase<SendMoneyResDto> {
+export class SendMoneyUseCase implements ISendMoneyUseCase<ITransactionResponse> {
   constructor(
     private readonly _accountService: IAccountService,
     private readonly _transactionService: ITransactionService
   ) {}
 
-  async execute(sendMoneyData: ITransfer): Promise<SendMoneyResDto> {
+  async execute(sendMoneyData: ITransfer): Promise<ITransactionResponse> {
     try {
       const sourceAccount = await this._accountService.findByNumber(
         sendMoneyData.sourceAccountNumber

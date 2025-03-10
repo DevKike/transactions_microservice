@@ -21,8 +21,8 @@ export class Account implements IAccount {
   @Column({ type: 'bigint', unique: true })
   number: number;
 
-  @Column({ type: 'int', width: 3, unique: true })
-  cvc: number;
+  @Column({ type: 'varchar', width: 3 })
+  cvc: string;
 
   @Column({ name: 'due_date', nullable: true })
   dueDate: Date;

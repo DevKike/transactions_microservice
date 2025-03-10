@@ -20,15 +20,22 @@ export interface ITransaction {
 export interface ITransactionCreate
   extends Pick<
     ITransaction,
-    | 'amount'
-    | 'description'
-    | 'type'
-    | 'reference'
-    | 'status'
+    'amount' | 'description' | 'type' | 'reference' | 'status'
   > {
-    sourceAccountId?: IAccount,
-    destinationAccountId?: IAccount,
-  }
+  sourceAccountId?: IAccount;
+  destinationAccountId?: IAccount;
+}
+
+export interface ITransactionResponse {
+  type: TransactionType;
+  status: TransactionStatus;
+  reference?: string;
+  amount?: number;
+  description?: string;
+  createdAt: Date;
+}
+
+export interface ITransactionWithoutCvc extends Omit<ITransaction, 'cvc'> {}
 
 export interface ITransactionUpdate extends Pick<ITransaction, 'status'> {}
 

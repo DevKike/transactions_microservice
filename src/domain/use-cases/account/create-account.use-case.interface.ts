@@ -4,5 +4,5 @@ import {
 } from '../../models/account/account.model.interface';
 
 export interface ICreateAccountUseCase {
-  execute(data: IAccountCreate): Promise<IAccount>;
+  execute(data: IAccountCreate): Promise<Omit<IAccount, 'cvc'>>;
 }
