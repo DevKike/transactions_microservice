@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
-import { ICreateTransaction } from '../../../../domain/models/transaction/transaction.model.interface';
+import { ITransactionCreate } from '../../../../../domain/models/transaction/transaction.model.interface';
 
-export class TransactionCreateReDto implements ICreateTransaction {
+export class TransactionCreateReDto implements ITransactionCreate {
   @IsNotEmpty()
   @IsNumber()
   amount: number;

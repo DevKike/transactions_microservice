@@ -1,7 +1,6 @@
 import {
   ITransaction,
   ITransactionCreate,
-  ITransactionUpdate,
 } from '../../models/transaction/transaction.model.interface';
 
 export interface ITransactionService {

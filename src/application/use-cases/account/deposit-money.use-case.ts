@@ -1,11 +1,13 @@
+import { TransactionStatus, TransactionType } from '../../../domain/enums/transaction/transaction.enum';
 import { NotFoundException } from '../../../domain/exceptions/not-found.exception';
 import {
   IDeposit,
   ITransaction,
+  ITransactionCreate,
 } from '../../../domain/models/transaction/transaction.model.interface';
 import { IAccountService } from '../../../domain/services/account/account.service.interface';
 import { ITransactionService } from '../../../domain/services/transaction/transaction.service.interface';
-import { IDepositMoneyUseCase } from '../../../domain/use-cases/transaction/deposit-money.use-case.interface';
+import { IDepositMoneyUseCase } from '../../../domain/use-cases/account/deposit-money.use-case.interface';
 
 export class DepositMoneyUseCase implements IDepositMoneyUseCase {
   constructor(
@@ -23,8 +25,10 @@ export class DepositMoneyUseCase implements IDepositMoneyUseCase {
         `Account with id: ${data.destinationAccountNumber} not found`
       );
 
-    const newData = {
+    const newData: ITransactionCreate = {
       ...data,
+      status: TransactionStatus.COMPLETED,
+      type: TransactionType.DEPOSIT,
       reference: this.generateReference(data.destinationAccountNumber),
     };
 

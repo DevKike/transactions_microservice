@@ -5,7 +5,7 @@ import { Transaction } from '../../database/entities/transaction/transaction.ent
 import { TYPES } from '../../inversify/types/inversify.types';
 import {
   ITransaction,
-  ITransactionCreate
+  ITransactionCreate,
 } from '../../../domain/models/transaction/transaction.model.interface';
 import { NotFoundException } from '../../../domain/exceptions/not-found.exception';
 
@@ -66,5 +66,4 @@ export class TransactionService implements ITransactionService {
       throw error;
     }
   }
-
 }

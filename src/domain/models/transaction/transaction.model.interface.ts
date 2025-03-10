@@ -18,7 +18,17 @@ export interface ITransaction {
 }
 
 export interface ITransactionCreate
-  extends Pick<ITransaction, 'amount' | 'description'> {}
+  extends Pick<
+    ITransaction,
+    | 'amount'
+    | 'description'
+    | 'type'
+    | 'reference'
+    | 'status'
+  > {
+    sourceAccountId?: IAccount,
+    destinationAccountId?: IAccount,
+  }
 
 export interface ITransactionUpdate extends Pick<ITransaction, 'status'> {}
 
@@ -26,3 +36,8 @@ export interface IDeposit extends Pick<ITransaction, 'amount'> {
   destinationAccountNumber: IAccount['number'];
 }
 
+export interface ITransfer
+  extends Pick<ITransaction, 'amount' | 'description'> {
+  destinationAccountNumber: IAccount['number'];
+  sourceAccountNumber: IAccount['number'];
+}
