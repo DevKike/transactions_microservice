@@ -59,6 +59,7 @@ export class AccountService implements IAccountService {
 
   async save(data: IAccountCreate): Promise<IAccount> {
     try {
+      
       const isExisting = await this.findByNumber(data.number);
 
       if (isExisting)

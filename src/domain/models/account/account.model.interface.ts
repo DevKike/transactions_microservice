@@ -7,13 +7,13 @@ export interface IAccount {
   cvc: string;
   dueDate: Date;
   type?: AccountType;
+  userId: number;
   balance: number;
   status: AccountStatus;
   createdAt: Date;
   updatedAt: Date;
   sourceTransactions: ITransaction[];
   destinationTransactions: ITransaction[];
-  // owner 1to1
 }
 
 export interface IAccountCreate
@@ -26,7 +26,9 @@ export interface IAccountCreate
     | 'destinationTransactions'
   > {}
 
-export interface IAccountCreateDto extends Pick<IAccount, 'type'> {}
+export interface IAccountCreateDto {
+  userId: number;
+}
 
 export interface IAccountUpdate
   extends Partial<

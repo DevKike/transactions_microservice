@@ -58,10 +58,10 @@ export class AccountRouterAdapter implements IRouterModulePort<Router> {
 
     this._router.post(
       '/',
-      this._classValidator(AccountCreateReqDto),
+      // this._classValidator(AccountCreateReqDto),
       (req: Request, res: Response) => {
         this._responseManagerAdapter.manageResponse(
-          this._createAccountUseCase.execute(req.body),
+          this._createAccountUseCase.execute(parseInt(req.body.id)),
           res,
           req.method,
           'Account created',

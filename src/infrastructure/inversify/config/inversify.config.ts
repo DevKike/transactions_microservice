@@ -50,7 +50,8 @@ container
   .bind<ICreateAccountUseCase>(TYPES.CreateAccountUseCase)
   .toDynamicValue((context) => {
     const accountService = context.get<IAccountService>(TYPES.AccountService);
-    return new CreateAccountUseCase(accountService);
+    const httpService = context.get<IHttpService>(TYPES.HttpService);
+    return new CreateAccountUseCase(accountService, httpService);
   });
 container
   .bind<IGetAccountDataUseCase>(TYPES.GetAccountDataUseCase)

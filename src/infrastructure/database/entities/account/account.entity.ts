@@ -30,6 +30,9 @@ export class Account implements IAccount {
   @Column({ type: 'enum', enum: AccountType, default: AccountType.CHECKING })
   type: AccountType;
 
+  @Column({ name: 'user_id', type: 'int' })
+  userId: number;
+
   @Column({ type: 'float', default: 0 })
   balance: number;
 

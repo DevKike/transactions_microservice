@@ -1,9 +1,9 @@
-import { IsEnum, IsNotEmpty } from 'class-validator';
-import { AccountType } from '../../../../../domain/enums/account/account.enum';
-import { IAccountCreateDto } from '../../../../../domain/models/account/account.model.interface';
+import { Transform } from 'class-transformer';
+import { IsNotEmpty, IsNumber } from 'class-validator';
 
-export class AccountCreateReqDto implements IAccountCreateDto {
+export class AccountCreateReqDto {
   @IsNotEmpty()
-  @IsEnum(AccountType)
-  type: AccountType;
+  @IsNumber()
+  @Transform(({ value }) => parseInt(value))
+  userId: number;
 }
