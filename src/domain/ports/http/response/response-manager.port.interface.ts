@@ -4,6 +4,8 @@ export interface IResponseManagerPort<T, K> {
   manageResponse(
     promise: any,
     appResponse: T,
+    type?: string,
+    content?: string,
     statusCode?: HttpStatusCode,
     message?: string
   ): Promise<T>;

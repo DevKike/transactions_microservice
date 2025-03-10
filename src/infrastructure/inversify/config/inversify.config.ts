@@ -25,6 +25,8 @@ import { DepositMoneyUseCase } from '../../../application/use-cases/account/depo
 import { ISendMoneyUseCase } from '../../../domain/use-cases/account/send-money.use-case.interface';
 import { SendMoneyUseCase } from '../../../application/use-cases/account/send-money.use-case';
 import { SendMoneyResDto } from '../../class-validator/dtos/account/res/send-money.res.dto';
+import { IHttpService } from '../../services/logger/interfaces/http.service.interface';
+import { HttpService } from '../../services/logger/http.service';
 
 const container = new Container();
 
@@ -81,5 +83,6 @@ container
     );
     return new SendMoneyUseCase(accountService, transactionService);
   });
+container.bind<IHttpService>(TYPES.HttpService).to(HttpService);
 
 export { container };

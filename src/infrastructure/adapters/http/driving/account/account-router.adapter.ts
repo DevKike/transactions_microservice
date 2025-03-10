@@ -49,6 +49,8 @@ export class AccountRouterAdapter implements IRouterModulePort<Router> {
       this._responseManagerAdapter.manageResponse(
         this._getAccountDataUseCase.execute(parseInt(req.params.id)),
         res,
+        req.method,
+        `Account with id: ${req.params.id} fetched`,
         HttpStatusCode.OK,
         SUCCESS_MESSAGES.FETCHED
       );
@@ -61,6 +63,8 @@ export class AccountRouterAdapter implements IRouterModulePort<Router> {
         this._responseManagerAdapter.manageResponse(
           this._createAccountUseCase.execute(req.body),
           res,
+          req.method,
+          'Account created',
           HttpStatusCode.CREATED,
           SUCCESS_MESSAGES.CREATED
         );
@@ -74,8 +78,8 @@ export class AccountRouterAdapter implements IRouterModulePort<Router> {
         this._responseManagerAdapter.manageResponse(
           this._depositMoneyUseCase.execute(req.body),
           res,
-          HttpStatusCode.CREATED,
-          SUCCESS_MESSAGES.CREATED
+          req.method,
+          'Money deposited'
         );
       }
     );
@@ -86,7 +90,9 @@ export class AccountRouterAdapter implements IRouterModulePort<Router> {
       (req: Request, res: Response) => {
         this._responseManagerAdapter.manageResponse(
           this._sendMoneyUseCase.execute(req.body),
-          res
+          res,
+          req.method,
+          'Money sent'
         );
       }
     );
